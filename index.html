@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaya Glow Beauty Salon | Indore</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blush-pink: #F5E1DA;
+      --nude-beige: #E8DCD5;
+      --soft-white: #FDF9F7;
+      --gold-accent: #C9A86C;
+      --deep-rose: #B88B8B;
+    }
+    
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .app-wrapper {
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: linear-gradient(180deg, var(--soft-white) 0%, var(--blush-pink) 50%, var(--nude-beige) 100%);
+    }
+    
+    .font-heading {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .font-body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    /* Floating Icons Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes float-reverse {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(-5deg); }
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 108, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(201, 168, 108, 0.8), 0 0 60px rgba(201, 168, 108, 0.4); }
+    }
+    
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slide-left {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes text-reveal {
+      from { clip-path: inset(0 100% 0 0); }
+      to { clip-path: inset(0 0 0 0); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    
+    .floating-icon {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .floating-icon-reverse {
+      animation: float-reverse 5s ease-in-out infinite;
+    }
+    
+    .sparkle {
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    
+    .glow-button {
+      animation: glow-pulse 2s ease-in-out infinite;
+    }
+    
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .service-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(184, 139, 139, 0.25);
+    }
+    
+    .gallery-item {
+      overflow: hidden;
+    }
+    
+    .gallery-item img {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .text-shimmer {
+      background: linear-gradient(90deg, var(--gold-accent) 0%, #E8D5B5 50%, var(--gold-accent) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+    
+    .testimonial-card {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -15px rgba(184, 139, 139, 0.3);
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-accent);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .offer-banner {
+      background: linear-gradient(135deg, rgba(201, 168, 108, 0.1) 0%, rgba(245, 225, 218, 0.3) 100%);
+      backdrop-filter: blur(10px);
+    }
+    
+    /* Staggered animations */
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
+    .stagger-6 { animation-delay: 0.6s; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body">
+  <div class="app-wrapper">
+   <!-- Floating Beauty Icons -->
+   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <svg class="floating-icon absolute top-20 left-10 w-12 h-12 text-pink-300 opacity-40" viewbox="0 0 24 24" fill="currentColor">
+     <path d="M12 2C10.34 2 9 3.34 9 5v6c0 1.66 1.34 3 3 3s3-1.34 3-3V5c0-1.66-1.34-3-3-3zm0 10c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1zm5.5 2h-11c-.83 0-1.5.67-1.5 1.5v1c0 .83.67 1.5 1.5 1.5h.5v4c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-4h.5c.83 0 1.5-.67 1.5-1.5v-1c0-.83-.67-1.5-1.5-1.5z" />
+    </svg>
+    <svg class="floating-icon-reverse absolute top-40 right-20 w-10 h-10 text-amber-300 opacity-50" viewbox="0 0 24 24" fill="currentColor">
+     <path d="M7 14c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm10.27-2.69l-1.27-.27c-.19-.04-.37-.13-.52-.27l-.84-.84c-.52-.52-1.37-.52-1.89 0l-.84.84c-.15.14-.33.23-.52.27l-1.27.27c-.74.16-1.24.86-1.08 1.59l.27 1.27c.04.19-.01.39-.12.54l-.67.93c-.44.61-.31 1.46.3 1.9l.93.67c.15.11.27.28.3.47l.27 1.27c.16.74.86 1.24 1.59 1.08l1.27-.27c.19-.04.39.01.54.12l.93.67c.61.44 1.46.31 1.9-.3l.67-.93c.11-.15.28-.27.47-.3l1.27-.27c.74-.16 1.24-.86 1.08-1.59l-.27-1.27c-.04-.19.01-.39.12-.54l.67-.93c.44-.61.31-1.46-.3-1.9l-.93-.67c-.15-.11-.27-.28-.3-.47l-.27-1.27c-.16-.74-.86-1.24-1.59-1.08z" />
+    </svg>
+    <svg class="floating-icon absolute bottom-40 left-20 w-8 h-8 text-rose-300 opacity-40" viewbox="0 0 24 24" fill="currentColor">
+     <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" />
+    </svg>
+    <svg class="floating-icon-reverse absolute bottom-60 right-10 w-14 h-14 text-amber-200 opacity-30" viewbox="0 0 24 24" fill="currentColor">
+     <path d="M9.64 16.36L3 22v-6.64l6.64-6.36L3 2.64V9l6.64 6.36L3 22l6.64-6.36zM14.36 16.36L21 22v-6.64l-6.64-6.36L21 2.64V9l-6.64 6.36L21 22l-6.64-6.36z" />
+    </svg><!-- Sparkle effects -->
+    <div class="sparkle absolute top-32 right-40 w-2 h-2 bg-amber-300 rounded-full"></div>
+    <div class="sparkle stagger-2 absolute top-60 left-40 w-1.5 h-1.5 bg-pink-300 rounded-full"></div>
+    <div class="sparkle stagger-4 absolute bottom-80 right-60 w-2 h-2 bg-amber-200 rounded-full"></div>
+    <div class="sparkle stagger-3 absolute top-80 left-60 w-1 h-1 bg-rose-300 rounded-full"></div>
+   </div><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+     <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+       <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-300 to-rose-300 flex items-center justify-center">
+        <span class="font-heading text-white text-lg font-bold">K</span>
+       </div><span class="font-heading text-2xl font-semibold text-gray-800">Kaya Glow</span>
+      </div>
+      <div class="hidden md:flex items-center space-x-8">
+       <a href="#home" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-medium tracking-wide">Home</a> <a href="#about" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-medium tracking-wide">About</a> <a href="#services" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-medium tracking-wide">Services</a> <a href="#gallery" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-medium tracking-wide">Gallery</a> <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-medium tracking-wide">Contact</a>
+      </div><button id="mobile-menu-btn" class="md:hidden p-2">
+       <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </div><!-- Mobile Menu -->
+     <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-pink-100">
+      <div class="flex flex-col space-y-3 pt-4">
+       <a href="#home" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Home</a> <a href="#about" class="text-gray-600 hover:text-gray-900 text-sm font-medium">About</a> <a href="#services" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Services</a> <a href="#gallery" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Gallery</a> <a href="#contact" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Contact</a>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+     <div class="absolute inset-0 bg-gradient-to-br from-pink-50/90 via-rose-50/80 to-amber-50/70"></div>
+     <svg class="absolute inset-0 w-full h-full opacity-10" viewbox="0 0 100 100" preserveaspectratio="none">
+      <defs>
+       <pattern id="grid" width="10" height="10" patternunits="userSpaceOnUse">
+        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#C9A86C" stroke-width="0.5" />
+       </pattern>
+      </defs> <rect width="100" height="100" fill="url(#grid)" />
+     </svg>
+    </div>
+    <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+     <div class="mb-6 animate-on-scroll">
+      <span class="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full text-sm font-medium text-amber-700 tracking-widest uppercase">Welcome to Luxury Beauty</span>
+     </div>
+     <h1 id="hero-title" class="font-heading text-5xl md:text-7xl lg:text-8xl font-semibold text-gray-800 mb-6 leading-tight animate-on-scroll stagger-1">Glow With Confidence at <span class="text-shimmer">Kaya Glow</span> Beauty Salon</h1>
+     <p id="hero-subtitle" class="font-body text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed animate-on-scroll stagger-2">Professional beauty, hair and skincare services in Indore. Where elegance meets expertise.</p>
+     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-on-scroll stagger-3">
+      <a href="#contact" class="glow-button px-10 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"> ✨ Book Appointment </a> <a href="#services" class="px-10 py-4 bg-white/80 backdrop-blur-sm text-gray-700 font-semibold rounded-full shadow-md hover:shadow-lg hover:bg-white transition-all duration-300"> View Services </a>
+     </div><!-- Decorative Elements -->
+     <div class="absolute -bottom-10 left-1/2 transform -translate-x-1/2">
+      <svg class="w-8 h-16 text-amber-400 animate-bounce" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+     </div>
+    </div><!-- Side Decorations -->
+    <div class="absolute left-8 top-1/2 transform -translate-y-1/2 hidden lg:block">
+     <div class="flex flex-col items-center space-y-4">
+      <div class="w-px h-20 bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
+      <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+      <div class="w-px h-20 bg-gradient-to-b from-transparent via-rose-400 to-transparent"></div>
+     </div>
+    </div>
+    <div class="absolute right-8 top-1/2 transform -translate-y-1/2 hidden lg:block">
+     <div class="flex flex-col items-center space-y-4">
+      <div class="w-px h-20 bg-gradient-to-b from-transparent via-rose-400 to-transparent"></div>
+      <div class="w-3 h-3 rounded-full bg-rose-400"></div>
+      <div class="w-px h-20 bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="animate-on-scroll">
+       <div class="relative">
+        <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl"><img src="https://images.unsplash.com/photo-1559308506-b8a63dd59b36?w=500&amp;h=625&amp;fit=crop" alt="Professional Makeup Artist" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #fda4af, #fbcfe8)'; this.alt='Professional Makeup Artist';">
+        </div>
+        <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-gradient-to-br from-amber-300 to-amber-400 rounded-3xl -z-10"></div>
+        <div class="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full -z-10 opacity-60"></div>
+       </div>
+      </div>
+      <div class="animate-on-scroll stagger-2">
+       <span class="inline-block px-4 py-2 bg-amber-100 rounded-full text-amber-700 text-sm font-semibold tracking-wider uppercase mb-6">About Us</span>
+       <h2 id="about-title" class="font-heading text-4xl md:text-5xl font-semibold text-gray-800 mb-6 leading-tight">Your Premier Beauty Destination in Indore</h2>
+       <p class="text-gray-600 leading-relaxed mb-6">Welcome to <strong class="text-amber-700">Kaya Glow Beauty Salon</strong>, where we transform your beauty dreams into reality. Our expert team of professionals is dedicated to providing exceptional makeup, hair styling, and skincare treatments that enhance your natural beauty.</p>
+       <p class="text-gray-600 leading-relaxed mb-8">With a commitment to the highest hygiene standards and using only premium products, we ensure every visit leaves you feeling refreshed, confident, and absolutely glowing. Experience the perfect blend of luxury and expertise.</p>
+       <div class="grid grid-cols-3 gap-6">
+        <div class="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl shadow-sm">
+         <div class="text-3xl font-heading font-bold text-amber-600 mb-1">
+          500+
+         </div>
+         <div class="text-sm text-gray-600">
+          Happy Clients
+         </div>
+        </div>
+        <div class="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl shadow-sm">
+         <div class="text-3xl font-heading font-bold text-rose-500 mb-1">
+          50+
+         </div>
+         <div class="text-sm text-gray-600">
+          Services
+         </div>
+        </div>
+        <div class="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl shadow-sm">
+         <div class="text-3xl font-heading font-bold text-pink-500 mb-1">
+          5⭐
+         </div>
+         <div class="text-sm text-gray-600">
+          Rating
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Services Section -->
+   <section id="services" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+     <div class="text-center mb-16 animate-on-scroll">
+      <span class="inline-block px-4 py-2 bg-rose-100 rounded-full text-rose-600 text-sm font-semibold tracking-wider uppercase mb-4">Our Services</span>
+      <h2 class="font-heading text-4xl md:text-5xl font-semibold text-gray-800 mb-4">Luxury Beauty Services</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">Discover our comprehensive range of premium beauty treatments designed to make you look and feel extraordinary.</p>
+     </div><!-- Service Categories -->
+     <div class="space-y-16">
+      <!-- Hair Services -->
+      <div class="animate-on-scroll">
+       <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center shadow-lg">
+         <svg class="w-7 h-7 text-white" viewbox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C10.34 2 9 3.34 9 5v2.5c0 1.93 1.57 3.5 3.5 3.5H14v1h-2c-1.1 0-2 .9-2 2v1H8v-1c0-1.1-.9-2-2-2H4v2h2v1c0 1.1.9 2 2 2h2v2c0 1.1.9 2 2 2s2-.9 2-2v-2h2c1.1 0 2-.9 2-2v-1h2v-2h-2c-1.1 0-2 .9-2 2v1h-2v-1c0-1.1-.9-2-2-2h-1.5c-.83 0-1.5-.67-1.5-1.5V5c0-.55.45-1 1-1s1 .45 1 1v3h2V5c0-1.66-1.34-3-3-3z" />
+         </svg>
+        </div>
+        <h3 class="font-heading text-3xl font-semibold text-gray-800">Hair Services</h3>
+       </div>
+       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Hair Basics -->
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">💇‍♀️</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Hair Basics</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Head Wash</span> <span class="font-semibold text-amber-600">₹200</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Blow Dry</span> <span class="font-semibold text-amber-600">₹200</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Curls / Ironing</span> <span class="font-semibold text-amber-600">₹300</span></li>
+         </ul>
+        </div><!-- Hair Color -->
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">🎨</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Hair Color</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Global Color Ragas</span> <span class="font-semibold text-amber-600">₹1000</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Matrix</span> <span class="font-semibold text-amber-600">₹1500</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Lorels</span> <span class="font-semibold text-amber-600">₹1800</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Wella</span> <span class="font-semibold text-amber-600">₹2200</span></li>
+         </ul>
+        </div><!-- Hair Treatments -->
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">✨</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Hair Treatments</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Filler Treatment</span> <span class="font-semibold text-amber-600">₹750</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Keratin</span> <span class="font-semibold text-amber-600">₹1100+</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Rebonding</span> <span class="font-semibold text-amber-600">₹1500</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Smoothening</span> <span class="font-semibold text-amber-600">₹5000</span></li>
+         </ul>
+        </div><!-- Haircuts -->
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">✂️</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Haircuts</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Regular Haircut</span> <span class="font-semibold text-amber-600">₹300</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Layer Haircut</span> <span class="font-semibold text-amber-600">₹300</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Advanced Haircut</span> <span class="font-semibold text-amber-600">₹400</span></li>
+         </ul>
+        </div>
+       </div>
+      </div><!-- Makeup Services -->
+      <div class="animate-on-scroll">
+       <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-400 to-rose-500 flex items-center justify-center shadow-lg">
+         <svg class="w-7 h-7 text-white" viewbox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9c.83 0 1.5-.67 1.5-1.5S7.83 8 7 8s-1.5.67-1.5 1.5S6.17 11 7 11zm10 0c.83 0 1.5-.67 1.5-1.5S17.83 8 17 8s-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm-5 5.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
+         </svg>
+        </div>
+        <h3 class="font-heading text-3xl font-semibold text-gray-800">Makeup Services</h3>
+       </div>
+       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">💄</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Daily &amp; Party</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Touch Up</span> <span class="font-semibold text-rose-500">₹550</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Natural Makeup</span> <span class="font-semibold text-rose-500">₹350</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Party Makeup</span> <span class="font-semibold text-rose-500">₹1000</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">HD Makeup</span> <span class="font-semibold text-rose-500">₹2000</span></li>
+         </ul>
+        </div>
+        <div class="service-card bg-gradient-to-br from-amber-50 to-rose-50 rounded-3xl p-6 shadow-lg border-2 border-amber-200">
+         <div class="absolute -top-3 -right-3 px-3 py-1 bg-gradient-to-r from-amber-400 to-amber-500 text-white text-xs font-semibold rounded-full">
+          Premium
+         </div>
+         <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">👰</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Bridal &amp; Sangeet</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Sangeet Makeup</span> <span class="font-semibold text-amber-600">₹4500/₹5500</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Bridal Makeup</span> <span class="font-semibold text-amber-600">₹7000/₹8000</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Groom Touch Up</span> <span class="font-semibold text-amber-600">₹1500</span></li>
+         </ul>
+        </div>
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">🧴</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Facials</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Economy Facial</span> <span class="font-semibold text-pink-500">₹650</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Silver Facial</span> <span class="font-semibold text-pink-500">₹850</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Skin Brightening</span> <span class="font-semibold text-pink-500">₹2000</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Face Lifting</span> <span class="font-semibold text-pink-500">₹2500</span></li>
+         </ul>
+        </div>
+       </div>
+      </div><!-- Cleanup & Wax Services -->
+      <div class="animate-on-scroll">
+       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Cleanup -->
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">🌿</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Cleanup</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Economy</span> <span class="font-semibold text-emerald-600">₹550</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Silver</span> <span class="font-semibold text-emerald-600">₹700</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Golden</span> <span class="font-semibold text-emerald-600">₹850</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Diamond</span> <span class="font-semibold text-emerald-600">₹1000</span></li>
+         </ul>
+        </div><!-- Wax -->
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">🍯</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Wax Services</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Under Arms</span> <span class="font-semibold text-amber-600">₹100</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Full Hands</span> <span class="font-semibold text-amber-600">₹350</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Full Legs</span> <span class="font-semibold text-amber-600">₹700</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Full Body</span> <span class="font-semibold text-amber-600">₹2500</span></li>
+         </ul>
+        </div><!-- Pedicure -->
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">🦶</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Pedicure</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">D-Tan Pedicure</span> <span class="font-semibold text-blue-600">₹500</span></li>
+         </ul>
+        </div><!-- Manicure -->
+        <div class="service-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+         <div class="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center mb-4">
+          <span class="text-2xl">💅</span>
+         </div>
+         <h4 class="font-heading text-xl font-semibold text-gray-800 mb-4">Manicure</h4>
+         <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">Regular Manicure</span> <span class="font-semibold text-violet-600">₹650</span></li>
+          <li class="flex justify-between items-center text-sm"><span class="text-gray-600">D-Tan Manicure</span> <span class="font-semibold text-violet-600">₹800</span></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Special Offers Banner -->
+   <section class="py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 opacity-90"></div>
+    <div class="absolute inset-0 overflow-hidden">
+     <div class="sparkle absolute top-10 left-20 w-4 h-4 bg-white rounded-full opacity-60"></div>
+     <div class="sparkle stagger-2 absolute top-20 right-40 w-3 h-3 bg-white rounded-full opacity-40"></div>
+     <div class="sparkle stagger-4 absolute bottom-10 left-40 w-2 h-2 bg-white rounded-full opacity-50"></div>
+     <div class="sparkle stagger-3 absolute bottom-20 right-20 w-5 h-5 bg-white rounded-full opacity-30"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10 animate-on-scroll">
+     <span class="inline-block px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-semibold tracking-wider uppercase mb-6">✨ Special Offer ✨</span>
+     <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">Bridal Packages Available!</h2>
+     <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto">Get the complete bridal experience with our exclusive packages. Book now and get 15% off on pre-bridal treatments!</p><a href="#contact" class="inline-block px-10 py-4 bg-white text-amber-600 font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"> Enquire Now → </a>
+    </div>
+   </section><!-- Gallery Section -->
+   <section id="gallery" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="text-center mb-16 animate-on-scroll">
+      <span class="inline-block px-4 py-2 bg-pink-100 rounded-full text-pink-600 text-sm font-semibold tracking-wider uppercase mb-4">Our Work</span>
+      <h2 class="font-heading text-4xl md:text-5xl font-semibold text-gray-800 mb-4">Beauty Gallery</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">Explore our stunning transformations and see why clients trust us for their special moments.</p>
+     </div>
+     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="gallery-item col-span-2 row-span-2 rounded-3xl overflow-hidden shadow-lg animate-on-scroll"><img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?w=800&amp;h=600&amp;fit=crop" alt="Bridal Makeup" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f59e0b, #ec4899)'; this.alt='Bridal Makeup';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-start p-6">
+        <div>
+         <span class="font-heading text-2xl text-white font-semibold">Bridal Makeup</span>
+        </div>
+       </div>
+      </div>
+      <div class="gallery-item rounded-3xl overflow-hidden shadow-lg animate-on-scroll stagger-1"><img src="https://images.unsplash.com/photo-1562322140-8baeae34fa25?w=500&amp;h=400&amp;fit=crop" alt="Hair Styling" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #fbbf24, #fb7185)'; this.alt='Hair Styling';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-start p-4"><span class="font-heading text-lg text-white font-semibold">Hair Styling</span>
+       </div>
+      </div>
+      <div class="gallery-item rounded-3xl overflow-hidden shadow-lg animate-on-scroll stagger-2"><img src="https://images.unsplash.com/photo-1633562715463-d30628cef4cb?w=500&amp;h=400&amp;fit=crop" alt="Party Makeup" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #ec4899, #a855f7)'; this.alt='Party Makeup';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-start p-4"><span class="font-heading text-lg text-white font-semibold">Party Look</span>
+       </div>
+      </div>
+      <div class="gallery-item rounded-3xl overflow-hidden shadow-lg animate-on-scroll stagger-3"><img src="https://images.unsplash.com/photo-1540555700212-9c8c004b4b04?w=500&amp;h=400&amp;fit=crop" alt="Facial Treatment" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #14b8a6)'; this.alt='Facial Treatment';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-start p-4"><span class="font-heading text-lg text-white font-semibold">Facial</span>
+       </div>
+      </div>
+      <div class="gallery-item rounded-3xl overflow-hidden shadow-lg animate-on-scroll stagger-4"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&amp;h=400&amp;fit=crop" alt="Nail Art" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a78bfa, #ec4899)'; this.alt='Nail Art';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-start p-4"><span class="font-heading text-lg text-white font-semibold">Nail Art</span>
+       </div>
+      </div>
+      <div class="gallery-item col-span-2 rounded-3xl overflow-hidden shadow-lg animate-on-scroll stagger-5"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&amp;h=400&amp;fit=crop" alt="Hair Color" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f59e0b, #f97316)'; this.alt='Hair Color Transformations';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-start p-6"><span class="font-heading text-xl text-white font-semibold">Hair Color Transformations</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Google Reviews CTA Section -->
+   <section class="py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500 opacity-90"></div>
+    <div class="absolute inset-0 overflow-hidden">
+     <div class="sparkle absolute top-10 left-20 w-4 h-4 bg-white rounded-full opacity-60"></div>
+     <div class="sparkle stagger-2 absolute top-20 right-40 w-3 h-3 bg-white rounded-full opacity-40"></div>
+     <div class="sparkle stagger-4 absolute bottom-10 left-40 w-2 h-2 bg-white rounded-full opacity-50"></div>
+     <div class="sparkle stagger-3 absolute bottom-20 right-20 w-5 h-5 bg-white rounded-full opacity-30"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10 animate-on-scroll">
+     <span class="inline-block px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-semibold tracking-wider uppercase mb-6">⭐ Share Your Experience ⭐</span>
+     <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">Love Our Salon?</h2>
+     <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto">Help other beauty lovers discover us! Share your experience on Google and let your glow shine ✨</p><a href="https://share.google/sEAhqkEHCrKaIHbZL" target="_blank" rel="noopener noreferrer" class="inline-block px-10 py-4 bg-white text-blue-600 font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"> Write a Google Review → </a>
+    </div>
+   </section><!-- Testimonials Section -->
+   <section class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-rose-50/50 to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+     <div class="text-center mb-16 animate-on-scroll">
+      <span class="inline-block px-4 py-2 bg-amber-100 rounded-full text-amber-700 text-sm font-semibold tracking-wider uppercase mb-4">Testimonials</span>
+      <h2 class="font-heading text-4xl md:text-5xl font-semibold text-gray-800 mb-4">What Our Clients Say</h2>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="testimonial-card bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg animate-on-scroll">
+       <div class="flex items-center gap-1 mb-4">
+        <span class="text-amber-400 text-xl">★★★★★</span>
+       </div>
+       <p class="text-gray-600 mb-6 leading-relaxed">"My bridal makeup was absolutely stunning! The team at Kaya Glow made me feel like a princess on my special day. Highly recommended!"</p>
+       <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-rose-300 to-pink-400 flex items-center justify-center">
+         <span class="text-white font-semibold">P</span>
+        </div>
+        <div>
+         <div class="font-semibold text-gray-800">
+          Priya Sharma
+         </div>
+         <div class="text-sm text-gray-500">
+          Bride
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="testimonial-card bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg animate-on-scroll stagger-2">
+       <div class="flex items-center gap-1 mb-4">
+        <span class="text-amber-400 text-xl">★★★★★</span>
+       </div>
+       <p class="text-gray-600 mb-6 leading-relaxed">"Best hair treatment I've ever had! My hair feels so smooth and healthy after the keratin treatment. The staff is very professional."</p>
+       <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-300 to-orange-400 flex items-center justify-center">
+         <span class="text-white font-semibold">A</span>
+        </div>
+        <div>
+         <div class="font-semibold text-gray-800">
+          Anita Jain
+         </div>
+         <div class="text-sm text-gray-500">
+          Regular Client
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="testimonial-card bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg animate-on-scroll stagger-4">
+       <div class="flex items-center gap-1 mb-4">
+        <span class="text-amber-400 text-xl">★★★★★</span>
+       </div>
+       <p class="text-gray-600 mb-6 leading-relaxed">"Amazing experience every time! The facials are so relaxing and my skin glows for days. Clean, hygienic and friendly staff."</p>
+       <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-300 to-purple-400 flex items-center justify-center">
+         <span class="text-white font-semibold">R</span>
+        </div>
+        <div>
+         <div class="font-semibold text-gray-800">
+          Ritu Verma
+         </div>
+         <div class="text-sm text-gray-500">
+          Loyal Customer
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="text-center mb-16 animate-on-scroll">
+      <span class="inline-block px-4 py-2 bg-rose-100 rounded-full text-rose-600 text-sm font-semibold tracking-wider uppercase mb-4">Get In Touch</span>
+      <h2 class="font-heading text-4xl md:text-5xl font-semibold text-gray-800 mb-4">Book Your Appointment</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">Visit us at our salon or reach out through any of the channels below. We'd love to hear from you!</p>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-12">
+      <div class="animate-on-scroll">
+       <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg">
+        <h3 class="font-heading text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+        <div class="space-y-6">
+         <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0">
+           <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+           </svg>
+          </div>
+          <div>
+           <div class="font-semibold text-gray-800 mb-1">
+            Location
+           </div>
+           <p id="location-text" class="text-gray-600">Yashwant Raw School, 81-A, Narendra Tiwari Marg, Sudama Nagar, Indore - 452009</p>
+          </div>
+         </div>
+         <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center flex-shrink-0">
+           <svg class="w-6 h-6 text-rose-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+           </svg>
+          </div>
+          <div>
+           <div class="font-semibold text-gray-800 mb-1">
+            Phone
+           </div>
+           <p id="phone-text" class="text-gray-600">+91 88392 18126</p>
+          </div>
+         </div>
+         <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
+           <svg class="w-6 h-6 text-emerald-600" fill="currentColor" viewbox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+           </svg>
+          </div>
+          <div>
+           <div class="font-semibold text-gray-800 mb-1">
+            WhatsApp
+           </div>
+           <p class="text-gray-600">Chat with us for quick bookings</p>
+          </div>
+         </div>
+         <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
+           <svg class="w-6 h-6 text-emerald-600" fill="currentColor" viewbox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+           </svg>
+          </div>
+          <div>
+           <div class="font-semibold text-gray-800 mb-1">
+            Service Areas
+           </div>
+           <p id="service-areas" class="text-gray-600">Sudama Nagar &amp; nearby areas</p>
+          </div>
+         </div>
+        </div><!-- Social Media -->
+        <div class="mt-8 pt-8 border-t border-gray-100">
+         <div class="font-semibold text-gray-800 mb-4">
+          Follow Us
+         </div>
+         <div class="flex gap-4">
+          <a href="#" class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center text-white hover:shadow-lg transform hover:scale-110 transition-all duration-300">
+           <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+           </svg></a> <a href="#" class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white hover:shadow-lg transform hover:scale-110 transition-all duration-300">
+           <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+           </svg></a> <a href="#" class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center text-white hover:shadow-lg transform hover:scale-110 transition-all duration-300">
+           <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+           </svg></a>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="animate-on-scroll stagger-2">
+       <div class="bg-gradient-to-br from-amber-100 via-rose-100 to-pink-100 rounded-3xl p-8 shadow-lg">
+        <h3 class="font-heading text-2xl font-semibold text-gray-800 mb-6">Send a Message</h3>
+        <form id="contact-form" class="space-y-6">
+         <div>
+          <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label> <input type="text" id="name" class="w-full px-4 py-3 rounded-xl border border-pink-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all bg-white/80" placeholder="Enter your name" required>
+         </div>
+         <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label> <input type="tel" id="phone" class="w-full px-4 py-3 rounded-xl border border-pink-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all bg-white/80" placeholder="+91 XXXXX XXXXX" required>
+         </div>
+         <div>
+          <label for="service" class="block text-sm font-medium text-gray-700 mb-2">Service Interested In</label> <select id="service" class="w-full px-4 py-3 rounded-xl border border-pink-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all bg-white/80" required> <option value="">Select a service</option> <option value="bridal">Bridal Makeup</option> <option value="hair">Hair Services</option> <option value="facial">Facials &amp; Skincare</option> <option value="party">Party Makeup</option> <option value="other">Other</option> </select>
+         </div>
+         <div>
+          <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label> <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-pink-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all bg-white/80 resize-none" placeholder="Tell us about your requirements..."></textarea>
+         </div><button type="submit" class="w-full glow-button py-4 bg-gradient-to-r from-amber-400 to-rose-400 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300"> Send Message ✨ </button>
+        </form>
+        <div id="form-success" class="hidden mt-4 p-4 bg-emerald-100 text-emerald-700 rounded-xl text-center font-medium">
+         Thank you! We'll get back to you soon 💕
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-12 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+     <div class="sparkle absolute top-10 left-20 w-2 h-2 bg-amber-400 rounded-full"></div>
+     <div class="sparkle stagger-2 absolute top-20 right-40 w-1.5 h-1.5 bg-rose-400 rounded-full"></div>
+     <div class="sparkle stagger-4 absolute bottom-10 left-40 w-2 h-2 bg-pink-400 rounded-full"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center space-x-3">
+       <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-rose-400 flex items-center justify-center">
+        <span class="font-heading text-white text-xl font-bold">K</span>
+       </div>
+       <div>
+        <div class="font-heading text-2xl font-semibold">
+         Kaya Glow
+        </div>
+        <div class="text-sm text-gray-400">
+         Beauty Salon
+        </div>
+       </div>
+      </div>
+      <div class="text-center md:text-right">
+       <p class="text-gray-400 text-sm">© 2024 Kaya Glow Beauty Salon. All rights reserved.</p>
+       <p class="text-gray-500 text-xs mt-1">Made with 💕 in Indore</p>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      hero_title: "Glow With Confidence at Kaya Glow Beauty Salon",
+      hero_subtitle: "Professional beauty, hair and skincare services in Sudama Nagar, Indore. Where elegance meets expertise.",
+      about_title: "Your Premier Beauty Destination in Sudama Nagar, Indore",
+      phone_number: "+91 88392 18126",
+      location_text: "Yashwant Raw School, 81-A, Narendra Tiwari Marg, Sudama Nagar, Indore - 452009",
+      service_areas: "Sudama Nagar & nearby areas",
+      background_color: "#FDF9F7",
+      surface_color: "#FFFFFF",
+      text_color: "#374151",
+      primary_action_color: "#C9A86C",
+      secondary_action_color: "#B88B8B",
+      font_family: "Cormorant Garamond",
+      font_size: 16
+    };
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          // Update hero title
+          const heroTitle = document.getElementById('hero-title');
+          if (heroTitle) {
+            const titleText = config.hero_title || defaultConfig.hero_title;
+            heroTitle.innerHTML = titleText.replace('Kaya Glow', '<span class="text-shimmer">Kaya Glow</span>');
+          }
+          
+          // Update hero subtitle
+          const heroSubtitle = document.getElementById('hero-subtitle');
+          if (heroSubtitle) {
+            heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+          }
+          
+          // Update about title
+          const aboutTitle = document.getElementById('about-title');
+          if (aboutTitle) {
+            aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+          }
+          
+          // Update phone number
+          const phoneText = document.getElementById('phone-text');
+          if (phoneText) {
+            phoneText.textContent = config.phone_number || defaultConfig.phone_number;
+          }
+          
+          // Update location
+          const locationText = document.getElementById('location-text');
+          if (locationText) {
+            locationText.textContent = config.location_text || defaultConfig.location_text;
+          }
+          
+          // Update service areas
+          const serviceAreas = document.getElementById('service-areas');
+          if (serviceAreas) {
+            serviceAreas.textContent = config.service_areas || defaultConfig.service_areas;
+          }
+          
+          // Apply colors
+          const bgColor = config.background_color || defaultConfig.background_color;
+          const surfaceColor = config.surface_color || defaultConfig.surface_color;
+          const textColor = config.text_color || defaultConfig.text_color;
+          const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+          const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+          
+          document.documentElement.style.setProperty('--soft-white', bgColor);
+          document.documentElement.style.setProperty('--gold-accent', primaryColor);
+          document.documentElement.style.setProperty('--deep-rose', secondaryColor);
+          
+          // Apply font family
+          const fontFamily = config.font_family || defaultConfig.font_family;
+          document.querySelectorAll('.font-heading').forEach(el => {
+            el.style.fontFamily = `${fontFamily}, serif`;
+          });
+          
+          // Apply font size scaling
+          const fontSize = config.font_size || defaultConfig.font_size;
+          document.documentElement.style.fontSize = `${fontSize}px`;
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => window.elementSdk.setConfig({ background_color: value })
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => window.elementSdk.setConfig({ surface_color: value })
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => window.elementSdk.setConfig({ text_color: value })
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => window.elementSdk.setConfig({ primary_action_color: value })
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => window.elementSdk.setConfig({ secondary_action_color: value })
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => window.elementSdk.setConfig({ font_family: value })
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => window.elementSdk.setConfig({ font_size: value })
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["about_title", config.about_title || defaultConfig.about_title],
+          ["phone_number", config.phone_number || defaultConfig.phone_number],
+          ["location_text", config.location_text || defaultConfig.location_text],
+          ["service_areas", config.service_areas || defaultConfig.service_areas]
+        ])
+      });
+    }
+
+    // Scroll Animation Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          // Close mobile menu if open
+          if (mobileMenu) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        contactForm.classList.add('hidden');
+        formSuccess.classList.remove('hidden');
+        
+        setTimeout(() => {
+          contactForm.reset();
+          contactForm.classList.remove('hidden');
+          formSuccess.classList.add('hidden');
+        }, 3000);
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d92837e008647c5',t:'MTc3Mjk3OTk3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
